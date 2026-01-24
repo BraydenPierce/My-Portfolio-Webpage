@@ -4,11 +4,12 @@ const cors = require("cors");
 
 // Used to store cookies with Mongo
 const session = require("express-session");
-const MongoStore = require("connect-mongo");
+const MongoStore = require("connect-mongo").default;
 
 require("dotenv").config({ path: "./config.env" });
 
 const port = process.env.PORT;
+app.use(express.json());
 
 app.use(
   cors({
@@ -22,23 +23,24 @@ app.use(
 
 app.use(
   session({
-    secret: "keyboard cat",
+    secret: "hugeTeeth",
     saveUninitialized: false, // don't create sessions until something is stored
     resave: false, // don't save session if unmodified
     store: MongoStore.create({
       mongoUrl: process.env.ATLAS_URI,
+      collectionName: "sessions",
     }),
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 1 day
   }),
 );
 
 // Get MongoDB driver connection
 const dbo = require("./db/conn");
 
-app.use(express.json());
-
 // API's
 app.use(require("./routes/auth"));
 
+// For testing
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
