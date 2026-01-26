@@ -1,6 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import Button from "react-bootstrap/Button";
 // import NavDropdown from "react-bootstrap/NavDropdown"; Might reuse for porfolio
 import { Link } from "react-router-dom";
 
@@ -23,6 +24,12 @@ function NavBar() {
             <Nav.Link as={Link} to="/contact">
               Contact
             </Nav.Link>
+          </Nav>
+          {/* The login button - right aligned */}
+          <Nav>
+            <Button as={Link} to="/login" variant="outline-primary">
+              Login
+            </Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
