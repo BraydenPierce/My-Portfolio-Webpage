@@ -23,8 +23,8 @@ module.exports = {
         console.log(
           "Pinged your deployment. You successfully connected to MongoDB!",
         );
-        _db = client.db("test");
-        console.log("Successfully connected to speedGame collection");
+        _db = client.db("portfolio");
+        console.log("Successfully connected to portfolio collection");
       } finally {
         // Ensures that the client will close when you finish/error
         console.log("Closing the client");

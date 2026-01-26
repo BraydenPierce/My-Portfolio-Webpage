@@ -8,10 +8,10 @@ const express = require("express");
 const router = express.Router();
 
 // Route to show all records. For testing
-router.route("/record").get(async (req, res) => {
+router.route("/users").get(async (req, res) => {
   try {
-    console.log("In record get route");
-    let db_connect = dbo.getDb("highScores");
+    console.log("In users get route");
+    let db_connect = dbo.getDb("portfolio");
     const result = await db_connect.collection("creds").find({}).toArray();
     res.json(result);
   } catch (err) {
@@ -23,7 +23,7 @@ router.route("/record").get(async (req, res) => {
 // Sets sessions, returns json
 router.route("/record/register").post(async (req, res) => {
   try {
-    console.log("In register post route");
+    console.log("In users register post route");
     let status = "";
     let db_connect = dbo.getDb();
     const salt = crypto.randomBytes(16).toString("hex");
@@ -63,9 +63,9 @@ router.route("/record/register").post(async (req, res) => {
 
 // Route to login a user from the database.
 // Sets sessions, returns json
-router.route("/record/login").post(async (req, res) => {
+router.route("/users/login").post(async (req, res) => {
   try {
-    console.log("In login post route");
+    console.log("In users login post route");
     let status = "";
     let db_connect = dbo.getDb();
     const userReq = await db_connect.collection("creds").findOne({
@@ -116,9 +116,9 @@ router.route("/record/login").post(async (req, res) => {
 });
 
 // Checks for an exisiting session. returns: true w/user info, or false.
-router.route("/record/session").get(async (req, res) => {
+router.route("/users/session").get(async (req, res) => {
   try {
-    console.log("In session check route");
+    console.log("In users session check route");
     if (req.session.username) {
       res.json({
         isLoggedIn: true,
@@ -139,7 +139,7 @@ router.route("/record/session").get(async (req, res) => {
   }
 });
 
-router.route("/record/logout").post(async (req, res) => {
+router.route("/users/logout").post(async (req, res) => {
   try {
     // Try to destroy session with inline function
     req.session.destroy((err) => {
