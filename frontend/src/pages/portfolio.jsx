@@ -1,7 +1,4 @@
-import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
+import { Card, Col, Row, Container } from "react-bootstrap";
 
 const Portfolio = () => {
   return (
@@ -13,9 +10,8 @@ const Portfolio = () => {
               <Card.Body>
                 <Card.Title>Project Title</Card.Title>
                 <Card.Text>
-                  This is a longer card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
+                  Example text providing a short description of the project,
+                  challenges I faced, and what skills I developed.
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -25,5 +21,5 @@ const Portfolio = () => {
     </Container>
   );
 };
-
+// TODO: Consider pagnation UI for project listing
 export default Portfolio;
