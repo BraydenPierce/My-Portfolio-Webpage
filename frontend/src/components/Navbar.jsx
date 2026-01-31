@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
-// import NavDropdown from "react-bootstrap/NavDropdown"; Might reuse for porfolio
+// import NavDropdown from "react-bootstrap/NavDropdown"; Might use for porfolio
 import { Link } from "react-router-dom";
 
 function NavBar() {
@@ -10,6 +10,13 @@ function NavBar() {
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand as={Link} to="/">
+          <img
+            alt=""
+            src="/icon.webp"
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+          />{" "}
           Brayden Pierce
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
