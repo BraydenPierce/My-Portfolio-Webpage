@@ -1,5 +1,13 @@
+import { Container, Row } from "react-bootstrap";
+
 const Home = () => {
-  return <h1>Home Page</h1>;
+  return (
+    <Container className="mt-4">
+      <Row>
+        <h1>Hello!</h1>
+      </Row>
+    </Container>
+  );
 };
 
 export default Home;
