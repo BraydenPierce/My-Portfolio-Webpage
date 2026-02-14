@@ -1,12 +1,12 @@
 import { Container, Row, Col, Image } from "react-bootstrap";
-import headshot from "../assets/imgs/headshot.JPG";
+import bray from "../assets/imgs/bray.jpg";
 
 const Home = () => {
   return (
     <Container className="mt-4">
       <Row>
         <Col>
-          <Image src={headshot} thumbnail />
+          <Image src={bray} thumbnail />
         </Col>
         <Col>
           <h1>Hello!</h1>
