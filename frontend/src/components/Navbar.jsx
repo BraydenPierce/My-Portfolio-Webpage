@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 // import NavDropdown from "react-bootstrap/NavDropdown"; Might use for porfolio
 import { Link } from "react-router-dom";
 
-function NavBar() {
+function NavBar({ onToggleTheme, theme }) {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -33,8 +33,15 @@ function NavBar() {
             </Nav.Link>
           </Nav>
           {/* The login button - right aligned */}
-          <Nav>
-            <Button as={Link} to="/login" variant="outline-primary">
+          <Nav className="gap-2">
+            <Button
+              variant="outline-secondary"
+              onClick={onToggleTheme}
+              aria-label="Toggle dark mode"
+            >
+              {theme === "dark" ? "☀️" : "🌙"}
+            </Button>
+            <Button as={Link} to="/login" variant="outline-secondary">
               Login
             </Button>
           </Nav>

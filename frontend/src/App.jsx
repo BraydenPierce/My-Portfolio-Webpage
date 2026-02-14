@@ -11,14 +11,27 @@ import Portfolio from "./pages/portfolio";
 import Contact from "./pages/contact";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import { useEffect, useState } from "react";
 
 // send cookies every request (need for sessions to work)
 axios.defaults.withCredentials = true;
 
 const App = () => {
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "dark"
+  );
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-bs-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () =>
+    setTheme((t) => (t === "dark" ? "light" : "dark"));
+
   return (
     <>
-      <NavBar />
+      <NavBar onToggleTheme={toggleTheme} theme={theme}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/experience" element={<Xp />} />
