@@ -32,7 +32,7 @@ function NavBar({ onToggleTheme, theme }) {
               Contact
             </Nav.Link>
           </Nav>
-          {/* The login button - right aligned */}
+          {/* The login and theme buttons - right aligned */}
           <Nav className="gap-2">
             <Button
               variant="outline-secondary"
