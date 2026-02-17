@@ -27,7 +27,7 @@ module.exports = {
         console.log("Successfully connected to portfolio collection");
       } finally {
         // Ensures that the client will close when you finish/error
-        console.log("Closing the client");
+        // console.log("Closing the client");
         await client.close();
       }
     }
