@@ -28,7 +28,7 @@ module.exports = {
       } finally {
         // Ensures that the client will close when you finish/error
         // console.log("Closing the client");
-        await client.close();
+        // await client.close();
       }
     }
     run().catch(console.dir);
