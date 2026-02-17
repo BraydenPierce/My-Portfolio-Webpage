@@ -21,7 +21,7 @@ router.route("/users").get(async (req, res) => {
 
 // Route to register a user into the database.
 // Sets sessions, returns json
-router.route("/record/register").post(async (req, res) => {
+router.route("/users/register").post(async (req, res) => {
   try {
     console.log("In users register post route");
     let status = "";
