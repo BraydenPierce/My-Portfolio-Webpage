@@ -1,23 +1,66 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
 
 const Register = () => {
-  const [formData, setFormData] = useState({
+  const [form, setForm] = useState({
     username: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  // Used to navigate to root page after handleSubmit function
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // TODO: Handle registration logic here
-    console.log("Registration Data:", formData);
-    alert("Registration submitted!");
+  function updateForm(jsonObj) {
+    return setForm((prevJsonObj) => {
+      // Takes the prevJsonObj and appends it with the new jsonObj
+      return { ...prevJsonObj, ...jsonObj }; // ... = unpacker
+    })
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    console.log("In Register handleSubmit")
+
+    // Check for minimum pasword length
+    const MIN_PASSWORD_LENGTH = 8;
+    if (form.password.length < MIN_PASSWORD_LENGTH) {
+      window.alert(
+        `Password must be at least ${MIN_PASSWORD_LENGTH} characters long.`
+      );
+      return;
+    }
+
+    // Check if passwords match
+    if (form.password !== form.confirmPassword) {
+      window.alert("Passwords do not match!");
+      return;
+    }
+
+    const regiCred = { ...form };
+     const res = await fetch("http://localhost:4000/users/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(regiCred),
+    }).catch((error) => {
+      window.alert(error);
+      return;
+    });
+
+    const data = await res.json();
+    console.log(data);
+
+    if (data.status === "register good") {
+      setForm({ username: "", email: "", password: "", confirmPassword: ""});
+      navigate("/");
+    } else {
+      window.alert("Register failed: " + data.status);
+    }
   };
 
   return (
@@ -33,8 +76,8 @@ const Register = () => {
                   <Form.Control
                     type="text"
                     name="userName"
-                    value={formData.username}
-                    onChange={handleChange}
+                    value={form.username}
+                    onChange={(e) => updateForm({ username: e.target.value })}
                     placeholder="Enter Username"
                     required
                   />
@@ -45,8 +88,8 @@ const Register = () => {
                   <Form.Control
                     type="email"
                     name="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    value={form.email}
+                    onChange={(e) => updateForm({ email: e.target.value })}
                     placeholder="Enter email"
                     required
                   />
@@ -57,8 +100,8 @@ const Register = () => {
                   <Form.Control
                     type="password"
                     name="password"
-                    value={formData.password}
-                    onChange={handleChange}
+                    value={form.password}
+                    onChange={(e) => updateForm({ password: e.target.value })}
                     placeholder="Password"
                     required
                   />
@@ -72,8 +115,8 @@ const Register = () => {
                   <Form.Control
                     type="password"
                     name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
+                    value={form.confirmPassword}
+                    onChange={(e) => updateForm({ confirmPassword: e.target.value })}
                     placeholder="Confirm Password"
                     required
                   />
@@ -86,7 +129,16 @@ const Register = () => {
             </Card.Body>
             <Card.Footer>
               <small className="text-muted">
-                Already have an account? <a href="/login">Login here</a>
+                Already have an account?{" "}
+                <a
+                  href="/login"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/login");
+                  }}
+                >
+                  Login here
+                </a>
               </small>
             </Card.Footer>
           </Card>

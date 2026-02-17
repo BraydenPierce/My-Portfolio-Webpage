@@ -8,7 +8,7 @@ const Login = () => {
     password: "",
   });
 
-  // Used to navigate to root page after onSubmit function
+  // Used to navigate to root page after handleSubmit function
   const navigate = useNavigate();
 
   function updateForm(jsonObj) {
@@ -20,7 +20,7 @@ const Login = () => {
 
 async function handleSubmit(e) {
     e.preventDefault();
-    console.log("In login handleSubmit");
+    console.log("In Login handleSubmit");
     const loginCred = { ...form };
     const res = await fetch("http://localhost:4000/users/login", {
       method: "POST",
