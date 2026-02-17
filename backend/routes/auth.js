@@ -29,9 +29,10 @@ router.route("/users/register").post(async (req, res) => {
     const salt = crypto.randomBytes(16).toString("hex");
     let myobj = {
       username: req.body.username,
+      email: req.body.email,
       password: req.body.password,
       salt: salt,
-      accType: req.body.accType,
+      accType: "User",
     };
 
     // Password hashing
@@ -45,6 +46,7 @@ router.route("/users/register").post(async (req, res) => {
     // Session setting
     if (!req.session.username) {
       req.session.username = myobj.username;
+      req.session.email = myobj.email;
       req.session.password = myobj.password;
       req.session.accType = myobj.accType;
       status = "Session Set";
@@ -52,7 +54,7 @@ router.route("/users/register").post(async (req, res) => {
       status = "Session already existed";
     }
     res.json({
-      status: "register login good",
+      status: "register good",
       session: status,
       accType: myobj.accType,
     });
