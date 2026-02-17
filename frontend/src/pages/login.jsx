@@ -1,10 +1,48 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
 
 const Login = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // TODO: Handle login logic here
-    console.log("Form submitted");
+  const [form, setForm] = useState({
+    username: "",
+    password: "",
+  });
+
+  // Used to navigate to root page after onSubmit function
+  const navigate = useNavigate();
+
+  function updateForm(jsonObj) {
+    return setForm((prevJsonObj) => {
+      // Takes the prevJsonObj and appends it with the new jsonObj
+      return { ...prevJsonObj, ...jsonObj }; // ... = unpacker
+    })
+  }
+
+async function handleSubmit(e) {
+    e.preventDefault();
+    console.log("In login handleSubmit");
+    const loginCred = { ...form };
+    const res = await fetch("http://localhost:4000/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(loginCred),
+    }).catch((error) => {
+      window.alert(error);
+      return;
+    });
+
+    const data = await res.json();
+    console.log(data);
+
+    if (data.status === "login good") {
+      setForm({ username: "", password: ""});
+      navigate("/");
+    } else {
+      window.alert("Login failed: " + data.status);
+    }
   };
 
   return (
@@ -20,7 +58,9 @@ const Login = () => {
                   <Form.Control
                     type="text"
                     placeholder="Enter Username"
+                    value={form.username}
                     required
+                    onChange={(e) => updateForm({ username: e.target.value })}
                   />
                   <Form.Text className="text-muted">
                     Enter username or email to login
@@ -32,7 +72,9 @@ const Login = () => {
                   <Form.Control
                     type="password"
                     placeholder="Password"
+                    value={form.password}
                     required
+                    onChange={(e) => updateForm({ password: e.target.value })}
                   />
                 </Form.Group>
 
@@ -43,7 +85,16 @@ const Login = () => {
             </Card.Body>
             <Card.Footer>
               <small className="text-muted">
-                Don't have an account? <a href="/register">Create one!</a>
+                Don't have an account?{" "}
+                <a
+                  href="/register" 
+                  onClick={(e) => { 
+                    e.preventDefault();
+                    navigate("/register");
+                   }}
+                >
+                  Create one!
+                </a>
               </small>
             </Card.Footer>
           </Card>
