@@ -1,6 +1,7 @@
 import { Container, Row, Image, Col } from "react-bootstrap";
 import email from "../assets/imgs/icon-email.png";
 import linkedin from "../assets/imgs/linkedin.png"
+import github from "../assets/imgs/github.png"
 import ButtonMailto from "../components/ButtonMailTo";
 
 const Contact = () => {
@@ -13,7 +14,6 @@ const Contact = () => {
         <Col xs="auto" className="d-flex">
           <Image
             src={email}
-
             style={{ width: "64px", height: "64px" }}
           />
         </Col>
@@ -36,7 +36,6 @@ const Contact = () => {
               style={{ width: "64px", height: "64px" }}
             />
           </a>
-
         </Col>
         <Col xs="auto" className="d-flex">
           <a
@@ -48,9 +47,33 @@ const Contact = () => {
           </a>
         </Col>
       </Row>
+      <Row className="align-items-center m-3">
+        <Col xs="auto" className="d-flex">
+          <a
+            href="https://github.com/BraydenPierce"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Image
+              src={github}
+              style={{ width: "64px", height: "64px" }}
+            />
+          </a>
+
+        </Col>
+        <Col xs="auto" className="d-flex">
+          <a
+            href="https://github.com/BraydenPierce"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Check out my Github
+          </a>
+        </Col>
+      </Row>
     </Container>
   );
 };
 
-// https://github.com/BraydenPierce
+// 
 export default Contact;
