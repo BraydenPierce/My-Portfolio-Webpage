@@ -7,7 +7,7 @@ import github from "../assets/imgs/github.png"
 const Home = () => {
   return (
     <Container className="mt-4">
-      <Row>
+      <Row className="fs-4">
         <Col>
           <Image src={bray} thumbnail />
         </Col>
@@ -19,10 +19,13 @@ const Home = () => {
             Look around my website to see some of my projects, hobbies, and ways of
             contacting me!
           </p>
+          <p>
+            test
+          </p>
           <h2>Enjoy!</h2>
         </Col>
       </Row>
-      <Row className="align-items-center m-3">
+      <Row className="align-items-center justify-content-center m-3">
         <Col xs="auto" className="d-flex">
           <a href="mailto:piercebrayden27@gmail.com">
             <Image
