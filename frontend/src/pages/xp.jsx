@@ -3,12 +3,12 @@ import resume from "../assets/resume.pdf";
 
 const Xp = () => {
   return (
-    <Container className="mt-4">
+    <Container className="mt-4 bg-body-tertiary shadow rounded-3">
       <Row>
-        <h1>Education:</h1>
+        <h1 className="text-decoration-underline">Education</h1>
       </Row>
       <Row>
-        <h1>Work Experience:</h1>
+        <h1 className="text-decoration-underline">Work Experience</h1>
       </Row>
       <Row className="align-items-center justify-content-center m-3">
         <Col xs="auto" className="d-flex">

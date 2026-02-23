@@ -6,8 +6,8 @@ import github from "../assets/imgs/github.png"
 
 const Home = () => {
   return (
-    <Container className="mt-4">
-      <Row className="fs-4">
+    <Container className="mt-4 bg-body-tertiary shadow rounded-3">
+      <Row className="fs-4 p-4">
         <Col>
           <Image src={bray} thumbnail />
         </Col>
@@ -25,7 +25,7 @@ const Home = () => {
           <h2>Enjoy!</h2>
         </Col>
       </Row>
-      <Row className="align-items-center justify-content-center m-3">
+      <Row className="align-items-center justify-content-center m-3 pb-4">
         <Col xs="auto" className="d-flex">
           <a href="mailto:piercebrayden27@gmail.com">
             <Image

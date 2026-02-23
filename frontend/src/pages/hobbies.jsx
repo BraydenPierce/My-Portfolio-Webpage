@@ -2,7 +2,7 @@ import { Container, Row, Image, Col } from "react-bootstrap";
 
 const Hobbies = () => {
   return (
-    <Container className="mt-4 fs-4">
+    <Container className="fs-4 mt-4 bg-body-tertiary shadow rounded-3">
       <h1>hobbies</h1>
     </Container>
   );

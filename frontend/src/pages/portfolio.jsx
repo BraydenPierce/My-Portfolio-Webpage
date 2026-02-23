@@ -2,8 +2,8 @@ import { Card, Col, Row, Container } from "react-bootstrap";
 
 const Portfolio = () => {
   return (
-    <Container className="mt-4">
-      <Row xs={1} md={2} className="g-4">
+    <Container className="mt-4 bg-body-tertiary shadow rounded-3">
+      <Row xs={1} md={2} className="fs-4 p-4">
         {Array.from({ length: 4 }).map((_, idx) => (
           <Col key={idx}>
             <Card>
