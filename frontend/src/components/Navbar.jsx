@@ -28,8 +28,8 @@ function NavBar({ onToggleTheme, theme }) {
             <Nav.Link as={Link} to="/portfolio">
               Portfolio
             </Nav.Link>
-            <Nav.Link as={Link} to="/contact">
-              Contact
+            <Nav.Link as={Link} to="/hobbies">
+              Hobbies
             </Nav.Link>
           </Nav>
           {/* The login and theme buttons - right aligned */}
