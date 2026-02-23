@@ -8,7 +8,7 @@ import NavBar from "./components/Navbar";
 import Home from "./pages/home";
 import Xp from "./pages/xp";
 import Portfolio from "./pages/portfolio";
-import Contact from "./pages/contact";
+import Hobbies from "./pages/hobbies";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import { useEffect, useState } from "react";
@@ -36,7 +36,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/experience" element={<Xp />} />
         <Route path="/portfolio" element={<Portfolio />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/hobbies" element={<Hobbies />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>

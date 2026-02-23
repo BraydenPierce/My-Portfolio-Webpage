@@ -1,5 +1,8 @@
 import { Container, Row, Col, Image } from "react-bootstrap";
 import bray from "../assets/imgs/bray.jpg";
+import email from "../assets/imgs/icon-email.png";
+import linkedin from "../assets/imgs/linkedin.png"
+import github from "../assets/imgs/github.png"
 
 const Home = () => {
   return (
@@ -17,6 +20,41 @@ const Home = () => {
             contacting me!
           </p>
           <h2>Enjoy!</h2>
+        </Col>
+      </Row>
+      <Row className="align-items-center m-3">
+        <Col xs="auto" className="d-flex">
+          <a href="mailto:piercebrayden27@gmail.com">
+            <Image
+              src={email}
+              style={{ width: "64px", height: "64px" }}
+            />
+          </a>
+        </Col>
+        <Col xs="auto" className="d-flex">
+          <a
+            href="https://www.linkedin.com/in/brayden-pierce-a4111a260/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Image
+              src={linkedin}
+              style={{ width: "64px", height: "64px" }}
+            />
+          </a>
+        </Col>
+        <Col xs="auto" className="d-flex">
+          <a
+            href="https://github.com/BraydenPierce"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Image
+              src={github}
+              style={{ width: "64px", height: "64px" }}
+            />
+          </a>
+
         </Col>
       </Row>
     </Container>
