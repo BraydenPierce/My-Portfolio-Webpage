@@ -39,6 +39,7 @@ const dbo = require("./db/conn");
 
 // API's
 app.use(require("./routes/auth"));
+app.use(require("./routes/github"));
 
 // For testing
 app.get("/", (req, res) => {
