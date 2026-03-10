@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { Card, Col, Row, Container, Spinner, Badge } from "react-bootstrap";
+import { Card, Col, Row, Container, Spinner, Badge, Pagination } from "react-bootstrap";
+
+const CARDS_PER_PAGE = 6;
 
 const Portfolio = () => {
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     fetch("http://localhost:4000/api/github/repos", { credentials: "include" })
@@ -14,12 +17,22 @@ const Portfolio = () => {
       });
   }, []);
 
-  if (loading) return <Spinner animation="border" className="m-4" />;
+  if (loading) return (
+    <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "50vh" }}>
+      <Spinner animation="border" />
+    </div>
+  ) 
+
+  const totalPages = Math.ceil(repos.length / CARDS_PER_PAGE);
+  const pageRepos = repos.slice(
+    (currentPage - 1) * CARDS_PER_PAGE,
+    currentPage * CARDS_PER_PAGE
+  )
 
   return (
     <Container className="mt-4 bg-body-tertiary shadow rounded-3">
       <Row xs={1} md={2} className="fs-4 p-4">
-        {repos.map((repo) => (
+        {pageRepos.map((repo) => (
           <Col key={repo.id} className="mb-3">
             <Card className="h-100">
               <Card.Body>
@@ -40,8 +53,30 @@ const Portfolio = () => {
           </Col>
         ))}
       </Row>
+
+      {totalPages > 1 && (
+        <Pagination className="justify-content-center pb-3">
+          <Pagination.Prev
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((p) => p - 1)}
+          />
+          {Array.from({ length: totalPages }, (_, i) => (
+            <Pagination.Item
+              key={i + 1}
+              active={i + 1 === currentPage}
+              onClick={() => setCurrentPage(i + 1)}
+            >
+              {i + 1}
+            </Pagination.Item>
+          ))}
+          <Pagination.Next
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage((p) => p + 1)}
+          />
+        </Pagination>
+      )}
     </Container>
   );
 };
-// TODO: Consider pagnation UI for project listing
+
 export default Portfolio;
