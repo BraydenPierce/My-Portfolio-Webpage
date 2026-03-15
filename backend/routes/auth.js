@@ -120,7 +120,7 @@ router.route("/users/login").post(async (req, res) => {
 // Checks for an exisiting session. returns: true w/user info, or false.
 router.route("/users/session").get(async (req, res) => {
   try {
-    console.log("In users session check route"); // For testing
+    console.log("In users session get route"); // For testing
     if (req.session.username) {
       res.json({
         isLoggedIn: true,
@@ -142,6 +142,7 @@ router.route("/users/session").get(async (req, res) => {
 
 router.route("/users/logout").post(async (req, res) => {
   try {
+    console.log("In users logout post route"); // For testing
     // Try to destroy session with inline function
     req.session.destroy((err) => {
       if (err) {
