@@ -23,7 +23,7 @@ router.route("/users").get(async (req, res) => {
 // Sets sessions, returns json
 router.route("/users/register").post(async (req, res) => {
   try {
-    console.log("In users register post route");
+    console.log("In users register post route"); // For testing
     let status = "";
     let db_connect = dbo.getDb();
     const salt = crypto.randomBytes(16).toString("hex");
@@ -67,7 +67,7 @@ router.route("/users/register").post(async (req, res) => {
 // Sets sessions, returns json
 router.route("/users/login").post(async (req, res) => {
   try {
-    console.log("In users login post route");
+    console.log("In users login post route"); // For testing
     let status = "";
     let db_connect = dbo.getDb();
     const userReq = await db_connect.collection("creds").findOne({
@@ -120,7 +120,7 @@ router.route("/users/login").post(async (req, res) => {
 // Checks for an exisiting session. returns: true w/user info, or false.
 router.route("/users/session").get(async (req, res) => {
   try {
-    console.log("In users session check route");
+    console.log("In users session check route"); // For testing
     if (req.session.username) {
       res.json({
         isLoggedIn: true,
@@ -130,7 +130,6 @@ router.route("/users/session").get(async (req, res) => {
     } else {
       res.json({
         isLoggedIn: false,
-        error: err.message,
       });
     }
   } catch (err) {
@@ -148,6 +147,8 @@ router.route("/users/logout").post(async (req, res) => {
       if (err) {
         return res.json({ status: "logout failed", error: err.message });
       }
+
+      res.clearCookie("connect.sid");
       res.json({ status: "logout successful" });
     });
   } catch (err) {
