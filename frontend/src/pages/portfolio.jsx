@@ -30,8 +30,8 @@ const Portfolio = () => {
   )
 
   return (
-    <Container className="mt-4 bg-body-tertiary shadow rounded-3">
-      <Row xs={1} md={2} className="fs-4 p-4">
+    <Container className="mt-4 bg-body-tertiary shadow rounded-3 d-flex flex-column" style={{ minHeight: "80vh" }}>
+      <Row xs={1} md={2} className="fs-4 p-4 flex-grow-1">
         {pageRepos.map((repo) => (
           <Col key={repo.id} className="mb-3">
             <Card className="h-100">
@@ -55,25 +55,27 @@ const Portfolio = () => {
       </Row>
 
       {totalPages > 1 && (
-        <Pagination className="justify-content-center pb-3">
-          <Pagination.Prev
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage((p) => p - 1)}
-          />
-          {Array.from({ length: totalPages }, (_, i) => (
-            <Pagination.Item
-              key={i + 1}
-              active={i + 1 === currentPage}
-              onClick={() => setCurrentPage(i + 1)}
-            >
-              {i + 1}
-            </Pagination.Item>
-          ))}
-          <Pagination.Next
-            disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage((p) => p + 1)}
-          />
-        </Pagination>
+        <div className="position-fixed bottom-0 start-50 translate-middle-x mb-3 z-3">
+          <Pagination>
+            <Pagination.Prev
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage((p) => p - 1)}
+            />
+            {Array.from({ length: totalPages }, (_, i) => (
+              <Pagination.Item
+                key={i + 1}
+                active={i + 1 === currentPage}
+                onClick={() => setCurrentPage(i + 1)}
+              >
+                {i + 1}
+              </Pagination.Item>
+            ))}
+            <Pagination.Next
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage((p) => p + 1)}
+            />
+          </Pagination>
+        </div>
       )}
     </Container>
   );
