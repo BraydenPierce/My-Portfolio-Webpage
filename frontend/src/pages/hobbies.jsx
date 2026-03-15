@@ -8,8 +8,8 @@ const Hobbies = () => {
     <Container className="mt-4 bg-body-tertiary shadow rounded-3">
       <Row>
         <h1>Reading</h1>
-        <Carousel className="m-4">
-          <Carousel.Item>
+        <Carousel className="m-4" variant="dark" pause="hover">
+          <Carousel.Item style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
             <div className="d-flex justify-content-center">
               <Image src={dracula} style={{ maxWidth: "300px", height: "auto", margin: "20px"}}/>
             </div>
@@ -18,13 +18,13 @@ const Hobbies = () => {
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </Carousel.Caption>
           </Carousel.Item>
-          <Carousel.Item>
+          <Carousel.Item style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
             <Carousel.Caption>
               <h3>Second slide label</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </Carousel.Caption>
           </Carousel.Item>
-          <Carousel.Item>
+          <Carousel.Item style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
             <Carousel.Caption>
               <h3>Third slide label</h3>
               <p>
@@ -36,20 +36,20 @@ const Hobbies = () => {
       </Row>
       <Row>
         <h1>Videogames</h1>
-        <Carousel className="m-4">
-          <Carousel.Item>
+        <Carousel className="m-4" variant="dark" pause="hover">
+          <Carousel.Item style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
             <Carousel.Caption>
               <h3>First slide label</h3>
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </Carousel.Caption>
           </Carousel.Item>
-          <Carousel.Item>
+          <Carousel.Item style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
             <Carousel.Caption>
               <h3>Second slide label</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </Carousel.Caption>
           </Carousel.Item>
-          <Carousel.Item>
+          <Carousel.Item style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
             <Carousel.Caption>
               <h3>Third slide label</h3>
               <p>
@@ -61,20 +61,20 @@ const Hobbies = () => {
       </Row>
       <Row>
         <h1>DnD</h1>
-        <Carousel className="m-4">
-          <Carousel.Item>
+        <Carousel className="m-4" variant="dark" pause="hover">
+          <Carousel.Item style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
             <Carousel.Caption>
               <h3>First slide label</h3>
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </Carousel.Caption>
           </Carousel.Item>
-          <Carousel.Item>
+          <Carousel.Item style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
             <Carousel.Caption>
               <h3>Second slide label</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </Carousel.Caption>
           </Carousel.Item>
-          <Carousel.Item>
+          <Carousel.Item style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
             <Carousel.Caption>
               <h3>Third slide label</h3>
               <p>
