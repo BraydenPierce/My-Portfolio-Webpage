@@ -40,6 +40,7 @@ const dbo = require("./db/conn");
 // API's
 app.use(require("./routes/auth"));
 app.use(require("./routes/github"));
+app.use(require("./routes/hobbies"));
 
 // For testing
 app.get("/", (req, res) => {
