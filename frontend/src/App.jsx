@@ -18,9 +18,8 @@ import { useEffect, useState } from "react";
 axios.defaults.withCredentials = true;
 
 const App = () => {
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") || "dark"
-  );
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-bs-theme", theme);
@@ -30,15 +29,30 @@ const App = () => {
   const toggleTheme = () =>
     setTheme((t) => (t === "dark" ? "light" : "dark"));
 
+  useEffect(() => {
+    fetch("http://localhost:4000/users/session", { credentials: "include" })
+      .then(r => r.json())
+      .then(data => setIsAuthenticated(!!data.isLoggedIn))
+      .catch(() => setIsAuthenticated(false));
+}, []);
+
   return (
     <>
-      <NavBar onToggleTheme={toggleTheme} theme={theme}/>
+      <NavBar 
+        isAuthenticated={isAuthenticated} 
+        onLogoutSuccess={() => setIsAuthenticated(false)} 
+        onToggleTheme={toggleTheme} 
+        theme={theme}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/experience" element={<Xp />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/hobbies" element={<Hobbies />} />
-        <Route path="/login" element={<Login />} />
+        <Route 
+          path="/login" 
+          element={<Login onLoginSuccess={() => setIsAuthenticated(true)} />} 
+        />
         <Route path="/register" element={<Register />} />
       </Routes>
     </>

@@ -3,9 +3,31 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 // import NavDropdown from "react-bootstrap/NavDropdown"; Might use for porfolio
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-function NavBar({ onToggleTheme, theme }) {
+function NavBar({ onToggleTheme, theme, isAuthenticated, onLogoutSuccess }) {
+  const navigate = useNavigate();
+
+  async function handleLogout() {
+    try {
+      const res = await fetch("http://localhost:4000/users/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+
+      const data = await res.json();
+
+      if (data.status === "logout successful") {
+        onLogoutSuccess?.();
+        navigate("/");
+      } else {
+        window.alert("Logout failed");
+      }
+    } catch (error) {
+      window.alert("Logout failed");
+    }
+  }
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -41,9 +63,15 @@ function NavBar({ onToggleTheme, theme }) {
             >
               {theme === "dark" ? "☀️" : "🌙"}
             </Button>
-            <Button as={Link} to="/login" variant="outline-secondary">
-              Login
-            </Button>
+            {isAuthenticated ? (
+              <Button variant="outline-secondary" onClick={handleLogout}>
+                Logout
+              </Button>
+            ) : (
+              <Button as={Link} to="/login" variant="outline-secondary">
+                Login
+              </Button>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

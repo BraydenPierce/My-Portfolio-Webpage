@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
 
-const Login = () => {
+const Login = ({ onLoginSuccess }) => {
   const [form, setForm] = useState({
     username: "",
     password: "",
@@ -20,8 +20,9 @@ const Login = () => {
 
 async function handleSubmit(e) {
     e.preventDefault();
-    console.log("In Login handleSubmit");
+    //console.log("In Login handleSubmit"); // For testing
     const loginCred = { ...form };
+
     const res = await fetch("http://localhost:4000/users/login", {
       method: "POST",
       headers: {
@@ -31,14 +32,17 @@ async function handleSubmit(e) {
       body: JSON.stringify(loginCred),
     }).catch((error) => {
       window.alert(error);
-      return;
+      return null;
     });
 
+    // Check the result of res
+    if (!res) return;
     const data = await res.json();
-    console.log(data);
+    //console.log(data); // For testing
 
     if (data.status === "login good") {
       setForm({ username: "", password: ""});
+      onLoginSuccess?.();
       navigate("/");
     } else {
       window.alert("Login failed: " + data.status);
@@ -91,7 +95,7 @@ async function handleSubmit(e) {
                   onClick={(e) => { 
                     e.preventDefault();
                     navigate("/register");
-                   }}
+                  }}
                 >
                   Create one!
                 </a>
