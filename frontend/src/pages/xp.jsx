@@ -9,7 +9,7 @@ const Xp = () => {
     <Container className="mt-4 bg-body-tertiary shadow rounded-3">
       <Row className="pt-2">
         <h1 className="text-decoration-underline">Education</h1>
-        <Accordion defaultActiveKey="0">
+        <Accordion>
           <Accordion.Item eventKey="0">
             <Accordion.Header>
               <div className="d-flex justify-content-between w-100 pe-2">
@@ -77,7 +77,7 @@ const Xp = () => {
       </Row>
       <Row className="pt-2">
         <h1 className="text-decoration-underline">Work Experience</h1>
-        <Accordion defaultActiveKey="0">
+        <Accordion>
           <Accordion.Item eventKey="0">
             <Accordion.Header>
               <div className="d-flex justify-content-between w-100 pe-2">
@@ -116,7 +116,7 @@ const Xp = () => {
       </Row>
       <Row className="pt-2">
         <h1 className="text-decoration-underline">Philanthropy Work</h1>
-        <Accordion defaultActiveKey="0">
+        <Accordion>
           <Accordion.Item eventKey="0">
             <Accordion.Header>
               <div className="d-flex justify-content-between w-100 pe-2">
