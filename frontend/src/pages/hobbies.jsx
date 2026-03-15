@@ -1,87 +1,81 @@
 import { Container, Row } from "react-bootstrap";
 import Carousel from 'react-bootstrap/Carousel';
 import Image from "react-bootstrap/Image";
-import dracula from "../assets/imgs/dracula.jpg";
+import { useState, useEffect } from "react";
 
 const Hobbies = () => {
+  const [readingItems, setReadingItems] = useState([]);
+  const [gamingItems, setGamingItems] = useState([]);
+  const [dndItems, setDndItems] = useState([]);
+
+  useEffect(() => {
+    const fetchCategory = async (category, setter) => {
+      const res = await fetch(`http://localhost:4000/hobbies?category=${category}`, {
+        credentials: "include",
+      });
+      const data = await res.json();
+      setter(data)
+    };
+
+    fetchCategory("reading", setReadingItems);
+    fetchCategory("videogames", setGamingItems);
+    fetchCategory("dnd", setDndItems);
+  }, []);
+
   return (
     <Container className="mt-4 bg-body-tertiary shadow rounded-3">
       <Row>
         <h1>Reading</h1>
-        <Carousel className="m-4" variant="dark" pause="hover">
-          <Carousel.Item style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
-            <div className="d-flex justify-content-center">
-              <Image src={dracula} style={{ maxWidth: "300px", height: "auto", margin: "20px"}}/>
-            </div>
-            <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
-            <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-              </p>
-            </Carousel.Caption>
-          </Carousel.Item>
+        <Carousel className="w-100" variant="dark" pause="hover">
+          {readingItems.map((item) => (
+            <Carousel.Item key={item._id} style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
+              {item.imageUrl && (
+                <div className="d-flex justify-content-center">
+                  <Image src={item.imageUrl} style={{ maxWidth: "300px", height: "auto", margin: "20px"}}/>
+                </div>
+              )}
+              <Carousel.Caption>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
         </Carousel>
       </Row>
       <Row>
         <h1>Videogames</h1>
-        <Carousel className="m-4" variant="dark" pause="hover">
-          <Carousel.Item style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
-            <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
-            <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-              </p>
-            </Carousel.Caption>
-          </Carousel.Item>
+        <Carousel className="w-100" variant="dark" pause="hover">
+          {gamingItems.map((item) => (
+            <Carousel.Item key={item._id} style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
+              {item.imageUrl && (
+                <div className="d-flex justify-content-center">
+                  <Image src={item.imageUrl} style={{ maxWidth: "300px", height: "auto", margin: "20px"}}/>
+                </div>
+              )}
+              <Carousel.Caption>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
         </Carousel>
       </Row>
       <Row>
         <h1>DnD</h1>
-        <Carousel className="m-4" variant="dark" pause="hover">
-          <Carousel.Item style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
-            <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
-            <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-              </p>
-            </Carousel.Caption>
-          </Carousel.Item>
+        <Carousel className="w-100" variant="dark" pause="hover">
+          {dndItems.map((item) => (
+            <Carousel.Item key={item._id} style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
+              {item.imageUrl && (
+                <div className="d-flex justify-content-center">
+                  <Image src={item.imageUrl} style={{ maxWidth: "300px", height: "auto", margin: "20px"}}/>
+                </div>
+              )}
+              <Carousel.Caption>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
         </Carousel>
       </Row>
     </Container>
