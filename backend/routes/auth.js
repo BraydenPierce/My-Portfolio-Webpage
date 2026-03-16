@@ -96,10 +96,18 @@ router.route("/users/login").post(async (req, res) => {
         status = "Session already existed";
       }
 
-      res.json({
-        status: "login good",
-        session: status,
-        accType: userReq.accType,
+      req.session.regenerate((err) => {
+        if (err) return res.status(500).json({ status: "login error" });
+
+        req.session.user = {
+          username: userReq.username,
+          accType: userReq.accType,
+        };
+
+        res.json({
+          status: "login good",
+          accType: userReq.accType,
+        });
       });
     } else {
       console.log("Pasword doesnt match");
@@ -121,17 +129,14 @@ router.route("/users/login").post(async (req, res) => {
 router.route("/users/session").get(async (req, res) => {
   try {
     console.log("In users session get route"); // For testing
-    if (req.session.username) {
-      res.json({
+    if (req.session.user) {
+      return res.json({
         isLoggedIn: true,
-        username: req.session.username,
-        accType: req.session.accType,
-      });
-    } else {
-      res.json({
-        isLoggedIn: false,
+        username: req.session.user.username,
+        accType: req.session.user.accType,
       });
     }
+    return res.json({ isLoggedIn: false });
   } catch (err) {
     res.json({
       isLoggedIn: false,
