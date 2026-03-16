@@ -11,9 +11,9 @@ const router = express.Router();
 // Route to show all users.
 router.route("/users").get(requireAdmin, async (req, res) => {
   try {
-    //console.log("In users get route"); // For testing
-    let db_connect = dbo.getDb("portfolio");
-    const users = await db_connect.collection("creds")
+    console.log("In users get route"); // For testing
+    let db = dbo.getDb("portfolio");
+    const users = await db.collection("creds")
       .find({}, { projection: { password: 0, salt: 0 } })
       .toArray();
     res.json(users);
@@ -28,7 +28,7 @@ router.route("/users/register").post(async (req, res) => {
   try {
     console.log("In users register post route"); // For testing
     let status = "";
-    let db_connect = dbo.getDb();
+    let db = dbo.getDb();
     const salt = crypto.randomBytes(16).toString("hex");
     let myobj = {
       username: req.body.username,
@@ -44,7 +44,7 @@ router.route("/users/register").post(async (req, res) => {
       .toString("hex");
     myobj.password = hash;
 
-    await db_connect.collection("creds").insertOne(myobj);
+    await db.collection("creds").insertOne(myobj);
 
     // Session setting
     if (!req.session.username) {
@@ -72,8 +72,8 @@ router.route("/users/login").post(async (req, res) => {
   try {
     console.log("In users login post route"); // For testing
     let status = "";
-    let db_connect = dbo.getDb();
-    const userReq = await db_connect.collection("creds").findOne({
+    let db = dbo.getDb();
+    const userReq = await db.collection("creds").findOne({
       username: req.body.username,
     });
 
