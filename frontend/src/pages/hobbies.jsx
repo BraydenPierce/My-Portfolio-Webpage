@@ -1,86 +1,173 @@
-import { Container, Row } from "react-bootstrap";
-import Carousel from 'react-bootstrap/Carousel';
+import { Container, Row, Button, ButtonGroup } from "react-bootstrap";
+import Carousel from "react-bootstrap/Carousel";
 import Image from "react-bootstrap/Image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
-const Hobbies = () => {
+const API_BASE = "http://localhost:4000";
+
+const Hobbies = ({ isAdmin }) => {
   const [readingItems, setReadingItems] = useState([]);
   const [gamingItems, setGamingItems] = useState([]);
   const [dndItems, setDndItems] = useState([]);
 
-  useEffect(() => {
-    const fetchCategory = async (category, setter) => {
-      const res = await fetch(`http://localhost:4000/hobbies?category=${category}`, {
-        credentials: "include",
-      });
-      const data = await res.json();
-      setter(data)
-    };
-
-    fetchCategory("reading", setReadingItems);
-    fetchCategory("videogames", setGamingItems);
-    fetchCategory("dnd", setDndItems);
+  const fetchCategory = useCallback(async (category, setter) => {
+    const res = await fetch(`${API_BASE}/hobbies?category=${category}`, {
+      credentials: "include",
+    });
+    const data = await res.json();
+    setter(data);
   }, []);
 
+  const refreshAll = useCallback(async () => {
+    await Promise.all([
+      fetchCategory("reading", setReadingItems),
+      fetchCategory("videogames", setGamingItems),
+      fetchCategory("dnd", setDndItems),
+    ]);
+  }, [fetchCategory]);
+
+  useEffect(() => {
+    refreshAll();
+  }, [refreshAll]);
+
+  const handleAdminApiError = async (res, fallbackMessage) => {
+    if (res.ok) return null;
+    let message = fallbackMessage;
+    try {
+      const data = await res.json();
+      if (data?.error) message = data.error;
+    } catch {}
+    if (res.status === 401) message = "You must be logged in.";
+    if (res.status === 403) message = "Admin access required.";
+    return message;
+  };
+
+  const openCreateForm = async () => {
+    const category = window.prompt("Category: reading, videogames, or dnd");
+    if (!category) return;
+    if (!["reading", "videogames", "dnd"].includes(category)) {
+      window.alert("Invalid category.");
+      return;
+    }
+
+    const title = window.prompt("Title:");
+    if (!title) return;
+
+    const description = window.prompt("Description:") || "";
+    const imageUrl = window.prompt("Image URL (optional):") || "";
+
+    const res = await fetch(`${API_BASE}/hobbies`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ category, title, description, imageUrl }),
+    });
+
+    const err = await handleAdminApiError(res, "Failed to create hobby.");
+    if (err) return window.alert(err);
+
+    await refreshAll();
+  };
+
+  const openEdit = async (item) => {
+    const category =
+      window.prompt("Category:", item.category) || item.category;
+    if (!["reading", "videogames", "dnd"].includes(category)) {
+      window.alert("Invalid category.");
+      return;
+    }
+
+    const title = window.prompt("Title:", item.title);
+    if (!title) return;
+
+    const description =
+      window.prompt("Description:", item.description || "") ?? item.description;
+    const imageUrl =
+      window.prompt("Image URL:", item.imageUrl || "") ?? item.imageUrl;
+
+    const res = await fetch(`${API_BASE}/hobbies/${item._id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ category, title, description, imageUrl }),
+    });
+
+    const err = await handleAdminApiError(res, "Failed to update hobby.");
+    if (err) return window.alert(err);
+
+    await refreshAll();
+  };
+
+  const handleDelete = async (id) => {
+    if (!window.confirm("Delete this hobby item?")) return;
+
+    const res = await fetch(`${API_BASE}/hobbies/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+
+    const err = await handleAdminApiError(res, "Failed to delete hobby.");
+    if (err) return window.alert(err);
+
+    await refreshAll();
+  };
+
+  const renderCarousel = (items) => (
+    <Carousel className="w-100" variant="dark" pause="hover">
+      {items.map((item) => (
+        <Carousel.Item
+          key={item._id}
+          style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}
+        >
+          {item.imageUrl && (
+            <div className="d-flex justify-content-center">
+              <Image
+                src={item.imageUrl}
+                style={{ maxWidth: "300px", height: "auto", margin: "20px" }}
+              />
+            </div>
+          )}
+          <Carousel.Caption>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+
+            {isAdmin && (
+              <ButtonGroup size="sm">
+                <Button variant="secondary" onClick={() => openEdit(item)}>
+                  Edit
+                </Button>
+                <Button variant="danger" onClick={() => handleDelete(item._id)}>
+                  Delete
+                </Button>
+              </ButtonGroup>
+            )}
+          </Carousel.Caption>
+        </Carousel.Item>
+      ))}
+    </Carousel>
+  );
+
   return (
-    <Container className="mt-4 bg-body-tertiary shadow rounded-3">
-      <Row>
-        <h1>Reading</h1>
-        <Carousel className="w-100" variant="dark" pause="hover">
-          {readingItems.map((item) => (
-            <Carousel.Item key={item._id} style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
-              {item.imageUrl && (
-                <div className="d-flex justify-content-center">
-                  <Image src={item.imageUrl} style={{ maxWidth: "300px", height: "auto", margin: "20px"}}/>
-                </div>
-              )}
-              <Carousel.Caption>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-          ))}
-        </Carousel>
-      </Row>
-      <Row>
-        <h1>Videogames</h1>
-        <Carousel className="w-100" variant="dark" pause="hover">
-          {gamingItems.map((item) => (
-            <Carousel.Item key={item._id} style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
-              {item.imageUrl && (
-                <div className="d-flex justify-content-center">
-                  <Image src={item.imageUrl} style={{ maxWidth: "300px", height: "auto", margin: "20px"}}/>
-                </div>
-              )}
-              <Carousel.Caption>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-          ))}
-        </Carousel>
-      </Row>
-      <Row>
-        <h1>DnD</h1>
-        <Carousel className="w-100" variant="dark" pause="hover">
-          {dndItems.map((item) => (
-            <Carousel.Item key={item._id} style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}>
-              {item.imageUrl && (
-                <div className="d-flex justify-content-center">
-                  <Image src={item.imageUrl} style={{ maxWidth: "300px", height: "auto", margin: "20px"}}/>
-                </div>
-              )}
-              <Carousel.Caption>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-          ))}
-        </Carousel>
-      </Row>
-    </Container>
+      <Container className="mt-4 bg-body-tertiary shadow rounded-3">
+        <Row>
+          <h1>Reading</h1>
+          {renderCarousel(readingItems)}
+        </Row>
+        <Row>
+          <h1>Videogames</h1>
+          {renderCarousel(gamingItems)}
+        </Row>
+        <Row>
+          <h1>DnD</h1>
+          {renderCarousel(dndItems)}
+        </Row>
+        {isAdmin && (
+          <div className="mt-3 ms-3">
+            <Button onClick={openCreateForm}>Add Hobby</Button>
+          </div>
+        )}
+      </Container>
   );
 };
 
-// 
 export default Hobbies;
