@@ -1,5 +1,6 @@
 const dbo = require("../db/conn"); // This will help us connect to the database
 const crypto = require("crypto"); // required for password hashing
+const { requireAdmin } = require("../middleware/auth")
 const express = require("express");
 // router is an instance of the express router.
 // We use it to define our routes.
@@ -7,15 +8,17 @@ const express = require("express");
 // take control of requests starting with path /record.
 const router = express.Router();
 
-// Route to show all records. For testing
-router.route("/users").get(async (req, res) => {
+// Route to show all users.
+router.route("/users").get(requireAdmin, async (req, res) => {
   try {
-    console.log("In users get route");
+    //console.log("In users get route"); // For testing
     let db_connect = dbo.getDb("portfolio");
-    const result = await db_connect.collection("creds").find({}).toArray();
-    res.json(result);
+    const users = await db_connect.collection("creds")
+      .find({}, { projection: { password: 0, salt: 0 } })
+      .toArray();
+    res.json(users);
   } catch (err) {
-    throw err;
+    res.status(500).json({ error: "Failed to fetch users" });
   }
 });
 
