@@ -9,6 +9,7 @@ const MongoStore = require("connect-mongo").default;
 require("dotenv").config({ path: "./config.env" });
 
 const port = process.env.PORT;
+const secret = process.env.SECRET;
 app.use(express.json());
 
 app.use(
@@ -23,7 +24,7 @@ app.use(
 
 app.use(
   session({
-    secret: "hugeTeeth",
+    secret: secret,
     saveUninitialized: false, // don't create sessions until something is stored
     resave: false, // don't save session if unmodified
     store: MongoStore.create({
