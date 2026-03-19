@@ -44,9 +44,9 @@ app.use(require("./routes/github"));
 app.use(require("./routes/hobbies"));
 
 // For testing
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello World!");
+// });
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);
