@@ -3,6 +3,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Image from "react-bootstrap/Image";
 import { useState, useEffect, useCallback } from "react";
 
+// Globals
 const API_BASE = "http://localhost:4000";
 
 const Hobbies = ({ isAdmin }) => {
@@ -10,6 +11,8 @@ const Hobbies = ({ isAdmin }) => {
   const [gamingItems, setGamingItems] = useState([]);
   const [dndItems, setDndItems] = useState([]);
 
+  // Get the data of a specfic category
+  // Called only by function refreshAll
   const fetchCategory = useCallback(async (category, setter) => {
     const res = await fetch(`${API_BASE}/hobbies?category=${category}`, {
       credentials: "include",
@@ -18,6 +21,8 @@ const Hobbies = ({ isAdmin }) => {
     setter(data);
   }, []);
 
+  // Load all hobby categories on initial render and reload
+  // if the underlying fetch logic is replaced
   const refreshAll = useCallback(async () => {
     await Promise.all([
       fetchCategory("reading", setReadingItems),
@@ -30,6 +35,7 @@ const Hobbies = ({ isAdmin }) => {
     refreshAll();
   }, [refreshAll]);
 
+  // Function to be called that ensures the user is authenticated as an Admin
   const handleAdminApiError = async (res, fallbackMessage) => {
     if (res.ok) return null;
     let message = fallbackMessage;
@@ -42,6 +48,7 @@ const Hobbies = ({ isAdmin }) => {
     return message;
   };
 
+  // Function to add a new hobby into the database
   const openCreateForm = async () => {
     const category = window.prompt("Category: reading, videogames, or dnd");
     if (!category) return;
@@ -69,6 +76,7 @@ const Hobbies = ({ isAdmin }) => {
     await refreshAll();
   };
 
+  // Handler for editing any of the hobby items
   const openEdit = async (item) => {
     const category =
       window.prompt("Category:", item.category) || item.category;
@@ -98,6 +106,7 @@ const Hobbies = ({ isAdmin }) => {
     await refreshAll();
   };
 
+  // Handler for deleting a hobbie from the database
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this hobby item?")) return;
 
@@ -112,6 +121,7 @@ const Hobbies = ({ isAdmin }) => {
     await refreshAll();
   };
 
+  // Carousel renderer for each category of hobby
   const renderCarousel = (items) => (
     <Carousel className="w-100" variant="dark" pause="hover">
       {items.map((item) => (
