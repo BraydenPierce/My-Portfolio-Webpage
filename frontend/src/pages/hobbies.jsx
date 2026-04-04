@@ -158,7 +158,7 @@ const Hobbies = ({ isAdmin }) => {
   );
 
   return (
-      <Container className="mt-4 bg-body-tertiary shadow rounded-3">
+      <Container className="mt-4 bg-secondary shadow rounded-3">
         <Row>
           <h1>Reading</h1>
           {renderCarousel(readingItems)}

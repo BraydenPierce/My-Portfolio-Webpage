@@ -29,7 +29,7 @@ function NavBar({ onToggleTheme, theme, isAuthenticated, onLogoutSuccess }) {
   }
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-secondary">
       <Container>
         <Navbar.Brand as={Link} to="/">
           <img
@@ -56,13 +56,21 @@ function NavBar({ onToggleTheme, theme, isAuthenticated, onLogoutSuccess }) {
           </Nav>
           {/* The login and theme buttons - right aligned */}
           <Nav className="gap-2">
-            <Button
-              variant="outline-secondary"
+            <button
+              type="button"
+              className={`theme-toggle ${theme === "dark" ? "is-dark" : "is-light"}`}
               onClick={onToggleTheme}
-              aria-label="Toggle dark mode"
+              role="switch"
+              aria-checked={theme === "dark"}
+              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
             >
-              {theme === "dark" ? "☀️" : "🌙"}
-            </Button>
+              <span className="theme-toggle-track">
+                <span className="theme-toggle-thumb" />
+              </span>
+              <span className="theme-toggle-text">
+                {theme === "dark" ? "Dark" : "Light"}
+              </span>
+            </button>
             {isAuthenticated ? (
               <Button variant="outline-secondary" onClick={handleLogout}>
                 Logout

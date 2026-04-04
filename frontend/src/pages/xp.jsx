@@ -6,7 +6,7 @@ const ONC_Hours = 14;
 
 const Xp = () => {
   return (
-    <Container className="mt-4 bg-body-tertiary shadow rounded-3">
+    <Container className="mt-4 bg-secondary shadow rounded-3">
       <Row className="pt-2">
         <h1 className="text-decoration-underline">Education</h1>
         <Accordion>

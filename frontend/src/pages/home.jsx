@@ -6,10 +6,10 @@ import github from "../assets/imgs/github.png"
 
 const Home = () => {
   return (
-    <Container className="mt-4 bg-body-tertiary shadow rounded-3">
+    <Container className="mt-4 bg-secondary bs-body-color shadow rounded-3">
       <Row className="fs-4 p-4">
         <Col>
-          <Image src={bray} thumbnail />
+          <Image src={bray} thumbnail className="border-tertiary"/>
         </Col>
         <Col>
           <h1>Hello and welcome!</h1>
