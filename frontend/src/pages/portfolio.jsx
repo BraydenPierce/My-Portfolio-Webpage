@@ -30,7 +30,7 @@ const Portfolio = () => {
   )
 
   return (
-    <Container className="portfolio-shell mt-4 shadow rounded-3 d-flex flex-column" style={{ minHeight: "80vh" }}>
+    <Container className="container-body mt-4 shadow rounded-3 d-flex flex-column" style={{ minHeight: "80vh" }}>
       <Row xs={1} md={2} className="fs-4 p-4 flex-grow-1">
         {pageRepos.map((repo) => (
           <Col key={repo.id} className="mb-3">
