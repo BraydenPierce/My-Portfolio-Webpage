@@ -72,11 +72,11 @@ function NavBar({ onToggleTheme, theme, isAuthenticated, onLogoutSuccess }) {
               </span>
             </button>
             {isAuthenticated ? (
-              <Button variant="outline-secondary" onClick={handleLogout}>
+              <Button variant="primary" onClick={handleLogout}>
                 Logout
               </Button>
             ) : (
-              <Button as={Link} to="/login" variant="outline-secondary">
+              <Button as={Link} to="/login" variant="primary">
                 Login
               </Button>
             )}
