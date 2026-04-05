@@ -50,7 +50,9 @@ code {
   overflow: hidden;
 }
 
-.theme-toggle {
+  /* #region Theme-Toggle */
+
+  .theme-toggle {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
@@ -59,9 +61,7 @@ code {
   color: #fff;
   padding: 0.2rem 0.35rem;
   border-radius: 999px;
-}
-
-  /* #region Theme-Toggle */
+  }
 
   .theme-toggle-track {
     width: 52px;
@@ -107,7 +107,34 @@ code {
     outline: 2px solid #fff;
     outline-offset: 2px;
   }
-  
+
   /* #endregion */
+
+/* #endregion */
+
+/* #region Accordion */
+
+.accordion {
+  --bs-accordion-bg: var(--bs-primary);
+  --bs-accordion-color: #1f1f1f;
+  --bs-accordion-border-color: var(--bs-tertiary);
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.2rem rgba(96, 108, 56, 0.25);
+  --bs-accordion-active-bg: var(--bs-tertiary);
+  --bs-accordion-active-color: var(--bs-primary);
+}
+
+.accordion .accordion-body {
+  background-color: var(--bs-primary);
+  color: #1f1f1f;
+}
+
+.accordion .accordion-button:not(.collapsed) {
+  background-color: var(--bs-tertiary);
+  color: var(--bs-primary);
+}
+
+.accordion .accordion-button::after {
+  filter: brightness(0);
+}
 
 /* #endregion */

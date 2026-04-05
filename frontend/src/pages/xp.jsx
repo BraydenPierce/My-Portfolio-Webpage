@@ -2,16 +2,16 @@ import { Container, Button, Row, Col } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion"
 import resume from "../assets/resume.pdf";
 
-const ONC_Hours = 14;
+const ONC_Hours = 16.5;
 
 const Xp = () => {
   return (
     <Container className="mt-4 bg-secondary shadow rounded-3">
       <Row className="pt-2">
-        <h1 className="text-decoration-underline">Education</h1>
+        <h1 className="text-decoration-underline text-center">Education</h1>
         <Accordion>
           <Accordion.Item eventKey="0">
-            <Accordion.Header>
+            <Accordion.Header className="bg-primary">
               <div className="d-flex justify-content-between w-100 pe-2">
                 <span>Bachelors of Computer Science - Weber State University</span>
                 <span>August 2023 – April 2026</span>
@@ -76,7 +76,7 @@ const Xp = () => {
       </Accordion>
       </Row>
       <Row className="pt-2">
-        <h1 className="text-decoration-underline">Work Experience</h1>
+        <h1 className="text-decoration-underline text-center">Work Experience</h1>
         <Accordion>
           <Accordion.Item eventKey="0">
             <Accordion.Header>
@@ -115,7 +115,7 @@ const Xp = () => {
       </Accordion>
       </Row>
       <Row className="pt-2">
-        <h1 className="text-decoration-underline">Philanthropy Work</h1>
+        <h1 className="text-decoration-underline text-center">Philanthropy Work</h1>
         <Accordion>
           <Accordion.Item eventKey="0">
             <Accordion.Header>
