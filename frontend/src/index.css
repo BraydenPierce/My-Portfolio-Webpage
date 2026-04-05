@@ -9,7 +9,7 @@
   --bs-tertiary-rgb: 96, 108, 56;
 }
 
-/* #region Dark Mode */
+/* #region Dark Mode General*/
 
 [data-bs-theme="dark"] {
   --bs-primary: #352208;
@@ -135,6 +135,135 @@ code {
 
 .accordion .accordion-button::after {
   filter: brightness(0);
+}
+
+/* #endregion */
+
+/* #region Github Cards */
+
+.portfolio-shell {
+  background: linear-gradient(180deg, rgba(var(--bs-secondary-rgb), 0.25), rgba(var(--bs-secondary-rgb), 0.12));
+  border: 2px solid var(--bs-tertiary);
+}
+
+.portfolio-card {
+  background-color: var(--bs-primary);
+  border: 2px solid var(--bs-tertiary);
+  border-radius: 10px;
+  box-shadow: 0 0px 16px rgba(0, 0, 0, 0.12);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.portfolio-link {
+  color: var(--bs-tertiary);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.portfolio-link:hover {
+  color: var(--bs-secondary);
+  text-decoration: underline;
+}
+
+.portfolio-card .card-text {
+  color: #1f1f1f;
+}
+
+.portfolio-badge {
+  font-size: 0.8rem;
+  border: 1px solid rgba(0, 0, 0, 0.15)
+}
+
+.portfolio-footer {
+  background-color: rgba(var(--bs-tertiary-rgb), 0.12);
+  border-top: 1px solid rgba(var(--bs-tertiary-rgb), 0.35);
+  color: #1f1f1f;
+}
+
+[data-bs-theme="dark"] .portfolio-shell {
+background: linear-gradient(
+180deg,
+rgba(var(--bs-secondary-rgb), 0.2),
+rgba(var(--bs-secondary-rgb), 0.08)
+);
+}
+
+[data-bs-theme="dark"] .portfolio-card {
+background-color: var(--bs-primary);
+border-color: var(--bs-secondary);
+}
+
+[data-bs-theme="dark"] .portfolio-link {
+color: var(--bs-secondary);
+}
+
+[data-bs-theme="dark"] .portfolio-link:hover {
+color: #f3d7ae;
+}
+
+[data-bs-theme="dark"] .portfolio-card .card-text,
+[data-bs-theme="dark"] .portfolio-footer {
+color: #f3e4cd;
+}
+
+[data-bs-theme="dark"] .portfolio-card:hover {
+  box-shadow: 0 0 24px rgba(225, 187, 128, 0.18);
+}
+
+/* #endregion */
+
+/* #region Pagination */
+
+.pagination {
+  --bs-pagination-color: var(--bs-tertiary);
+  --bs-pagination-bg: var(--bs-primary);
+  --bs-pagination-border-color: var(--bs-tertiary);
+
+  --bs-pagination-hover-color: var(--bs-primary);
+  --bs-pagination-hover-bg: var(--bs-tertiary);
+  --bs-pagination-hover-border-color: var(--bs-tertiary);
+
+  --bs-pagination-focus-color: var(--bs-primary);
+  --bs-pagination-focus-bg: var(--bs-tertiary);
+  --bs-pagination-focus-box-shadow: 0 0 0 0.2rem rgba(var(--bs-tertiary-rgb), 0.25);
+
+  --bs-pagination-active-color: var(--bs-primary);
+  --bs-pagination-active-bg: var(--bs-tertiary);
+  --bs-pagination-active-border-color: var(--bs-tertiary);
+
+  --bs-pagination-disabled-color: rgba(var(--bs-tertiary-rgb), 0.45);
+  --bs-pagination-disabled-bg: rgba(var(--bs-primary-rgb), 0.75);
+  --bs-pagination-disabled-border-color: rgba(var(--bs-tertiary-rgb), 0.35);
+}
+
+.pagination .page-link {
+  font-weight: 600;
+  border-width: 1px;
+}
+
+[data-bs-theme="dark"] .pagination {
+  --bs-pagination-color: var(--bs-secondary);
+  --bs-pagination-bg: var(--bs-primary);
+  --bs-pagination-border-color: var(--bs-secondary);
+
+  --bs-pagination-hover-color: #1f1f1f;
+  --bs-pagination-hover-bg: var(--bs-secondary);
+  --bs-pagination-hover-border-color: var(--bs-secondary);
+
+  --bs-pagination-active-color: #1f1f1f;
+  --bs-pagination-active-bg: var(--bs-secondary);
+  --bs-pagination-active-border-color: var(--bs-secondary);
+
+  --bs-pagination-focus-box-shadow: 0 0 0 0.2rem rgba(var(--bs-secondary-rgb), 0.3);
+
+  --bs-pagination-disabled-color: rgba(var(--bs-secondary-rgb), 0.45);
+  --bs-pagination-disabled-bg: rgba(var(--bs-primary-rgb), 0.8);
+  --bs-pagination-disabled-border-color: rgba(var(--bs-secondary-rgb), 0.35);
 }
 
 /* #endregion */

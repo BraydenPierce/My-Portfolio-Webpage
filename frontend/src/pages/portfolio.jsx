@@ -30,23 +30,23 @@ const Portfolio = () => {
   )
 
   return (
-    <Container className="mt-4 bg-secondary shadow rounded-3 d-flex flex-column" style={{ minHeight: "80vh" }}>
+    <Container className="portfolio-shell mt-4 shadow rounded-3 d-flex flex-column" style={{ minHeight: "80vh" }}>
       <Row xs={1} md={2} className="fs-4 p-4 flex-grow-1">
         {pageRepos.map((repo) => (
           <Col key={repo.id} className="mb-3">
-            <Card className="h-100">
+            <Card className="h-100 portfolio-card">
               <Card.Body>
                 <Card.Title>
-                  <a href={repo.html_url} target="_blank" rel="noreferrer">
+                  <a className="portfolio-link" href={repo.html_url} target="_blank" rel="noreferrer">
                     {repo.name}
                   </a>
                 </Card.Title>
                 <Card.Text className="fs-6">
                   {repo.description || "No description provided."}
                 </Card.Text>
-                {repo.language && <Badge bg="secondary">{repo.language}</Badge>}
+                {repo.language && <Badge bg="secondary" className="portfolio-badge">{repo.language}</Badge>}
               </Card.Body>
-              <Card.Footer className="text-muted fs-6">
+              <Card.Footer className="portfolio-footer fs-6">
                 ⭐ {repo.stargazers_count} · 🍴 {repo.forks_count}
               </Card.Footer>
             </Card>
