@@ -29,7 +29,7 @@ function NavBar({ onToggleTheme, theme, isAuthenticated, onLogoutSuccess }) {
   }
 
   return (
-    <Navbar expand="lg" className="bg-secondary">
+    <Navbar expand="lg" className="bg-secondary custom-navbar">
       <Container>
         <Navbar.Brand as={Link} to="/">
           <img

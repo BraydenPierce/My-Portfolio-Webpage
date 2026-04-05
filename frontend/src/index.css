@@ -39,6 +39,17 @@ code {
   background-color: var(--bs-tertiary);
 }
 
+/* #region NavBar */
+
+.custom-navbar {
+  width: calc(100% - 1.5rem);
+  max-width: 1600px;
+  margin: 0.75rem auto 0;
+  border-radius: 6px;
+  border: 5px solid var(--bs-tertiary);
+  overflow: hidden;
+}
+
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -50,47 +61,53 @@ code {
   border-radius: 999px;
 }
 
-.theme-toggle-track {
-  width: 52px;
-  height: 30px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.3);
-  position: relative;
-  transition: background-color 0.2s ease;
-}
+  /* #region Theme-Toggle */
 
-.theme-toggle-thumb {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-  transition: transform 0.2s ease;
-}
+  .theme-toggle-track {
+    width: 52px;
+    height: 30px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.3);
+    position: relative;
+    transition: background-color 0.2s ease;
+  }
 
-.theme-toggle.is-dark .theme-toggle-track {
-  background: var(--bs-secondary);
-}
+  .theme-toggle-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease;
+  }
 
-.theme-toggle.is-dark .theme-toggle-thumb {
-  transform: translateX(22px);
-}
+  .theme-toggle.is-dark .theme-toggle-track {
+    background: var(--bs-primary);
+  }
 
-.theme-toggle.is-light .theme-toggle-track {
-  color: #1f2530;
-}
+  .theme-toggle.is-dark .theme-toggle-thumb {
+    transform: translateX(22px);
+  }
 
-.theme-toggle-text {
-  font-weight: 600;
-  font-size: 0.95rem;
-  line-height: 1;
-  color: #1f2530;
-}
+  .theme-toggle.is-light .theme-toggle-track {
+    color: #1f2530;
+  }
 
-.theme-toggle:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 2px;
-}
+  .theme-toggle-text {
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1;
+    color: #1f2530;
+  }
+
+  .theme-toggle:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+  
+  /* #endregion */
+
+/* #endregion */
