@@ -38,6 +38,9 @@ code {
 .container-body {
   background: linear-gradient(180deg, rgba(var(--bs-secondary-rgb), 0.25), rgba(var(--bs-secondary-rgb), 0.12));
   border: 2px solid var(--bs-tertiary);
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .img-thumbnail {
@@ -324,6 +327,93 @@ color: #f3e4cd;
   --bs-btn-focus-shadow-rgb: var(--bs-secondary-rgb);
   --bs-btn-disabled-color: rgba(var(--bs-secondary-rgb), 0.45);
   --bs-btn-disabled-border-color: rgba(var(--bs-secondary-rgb), 0.45);
+}
+
+/* #endregion */
+
+/* #region Hobby Containers */
+
+.hobby-section {
+  background-color: var(--bs-primary);
+  border: 2px solid var(--bs-tertiary);
+  border-radius: 10px;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.12);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.hobby-carousel {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.hobby-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.hobby-title {
+  color: var(--bs-tertiary);
+  margin-bottom: 0.75rem;
+}
+
+.hobby-carousel-item {
+  background: rgba(var(--bs-secondary-rgb), 0.14);
+  border: 1px solid rgba(var(--bs-tertiary-rgb), 0.35);
+}
+
+.hobby-carousel .carousel-caption h3,
+.hobby-carousel .carousel-caption p {
+  color: #1f1f1f;
+  text-shadow: none;
+}
+
+.hobby-carousel {
+  --bs-carousel-control-icon-filter: invert(0) grayscale(100);
+  --bs-carousel-indicator-active-bg: var(--bs-tertiary);
+  --bs-carousel-indicator-bg: rgba(var(--bs-tertiary-rgb), 0.35);
+}
+
+.hobby-carousel .carousel-control-prev-icon,
+.hobby-carousel .carousel-control-next-icon {
+  filter: var(--bs-carousel-control-icon-filter);
+}
+
+.hobby-carousel .carousel-indicators [data-bs-target] {
+  background-color: var(--bs-carousel-indicator-bg);
+}
+
+.hobby-carousel .carousel-indicators .active {
+  background-color: var(--bs-carousel-indicator-active-bg);
+}
+
+[data-bs-theme="dark"] .hobby-carousel {
+  --bs-carousel-control-icon-filter: invert(1) grayscale(100);
+  --bs-carousel-indicator-active-bg: var(--bs-secondary);
+  --bs-carousel-indicator-bg: rgba(var(--bs-secondary-rgb), 0.35);
+}
+
+[data-bs-theme="dark"] .hobby-carousel-item {
+  background: rgba(var(--bs-secondary-rgb), 0.1);
+  border-color: rgba(var(--bs-secondary-rgb), 0.35);
+}
+
+[data-bs-theme="dark"] .hobby-carousel .carousel-caption h3,
+[data-bs-theme="dark"] .hobby-carousel .carousel-caption p {
+  color: #f3e4cd;
+}
+
+[data-bs-theme="dark"] .hobby-section {
+  border-color: var(--bs-secondary);
+}
+
+[data-bs-theme="dark"] .hobby-title {
+  color: var(--bs-secondary);
+}
+
+[data-bs-theme="dark"] .hobby-section:hover {
+  box-shadow: 0 0 24px rgba(var(--bs-secondary-rgb), 0.18);
 }
 
 /* #endregion */

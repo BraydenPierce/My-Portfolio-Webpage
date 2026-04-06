@@ -1,4 +1,4 @@
-import { Container, Row, Button, ButtonGroup } from "react-bootstrap";
+import { Container, Button, ButtonGroup } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
 import Image from "react-bootstrap/Image";
 import { useState, useEffect, useCallback } from "react";
@@ -123,11 +123,12 @@ const Hobbies = ({ isAdmin }) => {
 
   // Carousel renderer for each category of hobby
   const renderCarousel = (items) => (
-    <Carousel className="w-100" variant="dark" pause="hover">
+    <Carousel className="hobby-carousel" pause="hover">
       {items.map((item) => (
         <Carousel.Item
           key={item._id}
-          style={{ minHeight: "200px", background: "#e9ecef", borderRadius: "8px" }}
+          className="hobby-carousel-item"
+          style={{ minHeight: "200px", borderRadius: "8px" }}
         >
           {item.imageUrl && (
             <div className="d-flex justify-content-center">
@@ -157,20 +158,21 @@ const Hobbies = ({ isAdmin }) => {
     </Carousel>
   );
 
+const hobbySections = [
+  { title: "Reading", items: readingItems },
+  { title: "Videogames", items: gamingItems },
+  { title: "Dungeons & Dragons", items: dndItems },
+];
+
   return (
       <Container className="mt-4 container-body shadow rounded-3">
-        <Row>
-          <h1>Reading</h1>
-          {renderCarousel(readingItems)}
-        </Row>
-        <Row>
-          <h1>Videogames</h1>
-          {renderCarousel(gamingItems)}
-        </Row>
-        <Row>
-          <h1>DnD</h1>
-          {renderCarousel(dndItems)}
-        </Row>
+        {hobbySections.map((section) => (
+          <div key={section.title} className="hobby-section mb-4 p-3">
+            <h2 className="hobby-title text-center">{section.title}</h2>
+            {renderCarousel(section.items)}
+          </div>
+        ))}
+
         {isAdmin && (
           <div className="mt-3 ms-3">
             <Button onClick={openCreateForm}>Add Hobby</Button>
