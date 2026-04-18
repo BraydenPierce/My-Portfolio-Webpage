@@ -7,6 +7,8 @@ import reportWebVitals from "./reportWebVitals";
 const container = document.getElementById("root");
 const root = createRoot(container);
 
+// StrictMode is just for development and doesn't effect production;
+// it's the source for double logs.
 root.render(
   <React.StrictMode>
     <BrowserRouter>
@@ -18,4 +20,4 @@ root.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals(console.log);
