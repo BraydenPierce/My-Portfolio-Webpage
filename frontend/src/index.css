@@ -9,17 +9,6 @@
   --bs-tertiary-rgb: 96, 108, 56;
 }
 
-/* #region Dark Mode General*/
-
-[data-bs-theme="dark"] {
-  --bs-primary: #352208;
-  --bs-primary-rgb: 53, 34, 8;
-  --bs-secondary: #e1bb80;
-  --bs-secondary-rgb: 225, 187, 128;
-  --bs-body-color: var(--bs-secondary);
-}
-
-/* #endregion */
 
 body {
   margin: 0;
@@ -47,8 +36,18 @@ code {
   background-color: var(--bs-tertiary);
 }
 
-/* #region NavBar */
+/* #region Dark Mode General*/
 
+[data-bs-theme="dark"] {
+  --bs-primary: #352208;
+  --bs-primary-rgb: 53, 34, 8;
+  --bs-secondary: #e1bb80;
+  --bs-secondary-rgb: 225, 187, 128;
+  --bs-body-color: var(--bs-secondary);
+}
+/* #endregion */
+
+/* #region NavBar */
 .custom-navbar {
   width: calc(100% - 1.5rem);
   max-width: 1600px;
@@ -127,13 +126,10 @@ code {
     outline: 2px solid #fff;
     outline-offset: 2px;
   }
-
   /* #endregion */
-
 /* #endregion */
 
 /* #region Accordion */
-
 .accordion {
   --bs-accordion-bg: var(--bs-primary);
   --bs-accordion-color: #1f1f1f;
@@ -156,11 +152,9 @@ code {
 .accordion .accordion-button::after {
   filter: brightness(0);
 }
-
 /* #endregion */
 
 /* #region Github Cards */
-
 .portfolio-card {
   background-color: var(--bs-primary);
   border: 2px solid var(--bs-tertiary);
@@ -229,11 +223,9 @@ color: #f3e4cd;
 [data-bs-theme="dark"] .portfolio-card:hover {
   box-shadow: 0 0 24px rgba(225, 187, 128, 0.18);
 }
-
 /* #endregion */
 
 /* #region Pagination */
-
 .pagination {
   --bs-pagination-color: var(--bs-tertiary);
   --bs-pagination-bg: var(--bs-primary);
@@ -280,11 +272,9 @@ color: #f3e4cd;
   --bs-pagination-disabled-bg: rgba(var(--bs-primary-rgb), 0.8);
   --bs-pagination-disabled-border-color: rgba(var(--bs-secondary-rgb), 0.35);
 }
-
 /* #endregion */
 
 /* #region Buttons */
-
 .btn {
   border-width: 2px;
   font-weight: 600;
@@ -340,11 +330,9 @@ color: #f3e4cd;
   --bs-btn-disabled-color: rgba(var(--bs-secondary-rgb), 0.45);
   --bs-btn-disabled-border-color: rgba(var(--bs-secondary-rgb), 0.45);
 }
-
 /* #endregion */
 
 /* #region Hobby Containers */
-
 .hobby-section {
   background-color: var(--bs-primary);
   border: 2px solid var(--bs-tertiary);
@@ -427,5 +415,85 @@ color: #f3e4cd;
 [data-bs-theme="dark"] .hobby-section:hover {
   box-shadow: 0 0 24px rgba(var(--bs-secondary-rgb), 0.18);
 }
+/* #endregion */
 
+/* #region Forms */
+.auth-shell {
+  max-width: 900px;
+}
+
+.auth-card {
+  background: linear-gradient(
+    180deg,
+    rgba(var(--bs-secondary-rgb), 0.18),
+    rgba(var(--bs-secondary-rgb), 0.08)
+  );
+  border: 2px solid var(--bs-tertiary);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.12);
+}
+
+.auth-card-header {
+  background-color: var(--bs-tertiary);
+  color: var(--bs-primary);
+  border-bottom: 2px solid var(--bs-tertiary);
+}
+
+.auth-card .card-body,
+.auth-card .card-footer {
+  background-color: transparent;
+}
+
+.auth-card .form-label {
+  color: var(--bs-tertiary);
+  font-weight: 600;
+}
+
+.auth-input {
+  background-color: var(--bs-primary);
+  border: 2px solid rgba(var(--bs-tertiary-rgb), 0.55);
+  color: #1f1f1f;
+}
+
+.auth-input:focus {
+  border-color: var(--bs-tertiary);
+  box-shadow: 0 0 0 0.2rem rgba(var(--bs-tertiary-rgb), 0.2);
+  background-color: var(--bs-primary);
+  color: #1f1f1f;
+}
+
+.auth-helper-text {
+  color: rgba(31, 31, 31, 0.75);
+}
+
+.auth-card .card-footer {
+  border-top: 1px solid rgba(var(--bs-tertiary-rgb), 0.25);
+  color: #1f1f1f;
+}
+
+[data-bs-theme="dark"] .auth-card {
+  border-color: var(--bs-secondary);
+}
+
+[data-bs-theme="dark"] .auth-card-header {
+  background-color: var(--bs-secondary);
+  color: #1f1f1f;
+}
+
+[data-bs-theme="dark"] .auth-input {
+  background-color: var(--bs-primary);
+  border-color: rgba(var(--bs-secondary-rgb), 0.55);
+  color: var(--bs-secondary);
+}
+
+[data-bs-theme="dark"] .auth-input:focus {
+  border-color: var(--bs-secondary);
+  box-shadow: 0 0 0 0.2rem rgba(var(--bs-secondary-rgb), 0.22);
+}
+
+[data-bs-theme="dark"] .auth-helper-text,
+[data-bs-theme="dark"] .auth-card .card-footer {
+  color: #f3e4cd;
+}
 /* #endregion */

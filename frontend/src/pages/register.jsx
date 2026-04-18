@@ -64,16 +64,19 @@ const Register = () => {
   };
 
   return (
-    <Container className="mt-4">
+    <Container className="mt-4 auth-shell">
       <Row className="justify-content-md-center">
         <Col md={6}>
-          <Card>
-            <Card.Header as="h5">Register an Account</Card.Header>
+          <Card className="auth-card shadow">
+            <Card.Header as="h5" className="auth-card-header">
+              Register an Account
+            </Card.Header>
             <Card.Body>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formGridUserName">
                   <Form.Label>Username</Form.Label>
                   <Form.Control
+                    className="auth-input"
                     type="text"
                     name="userName"
                     value={form.username}
@@ -86,6 +89,7 @@ const Register = () => {
                 <Form.Group className="mb-3" controlId="formGridEmail">
                   <Form.Label>Email Address</Form.Label>
                   <Form.Control
+                    className="auth-input"
                     type="email"
                     name="email"
                     value={form.email}
@@ -98,6 +102,7 @@ const Register = () => {
                 <Form.Group className="mb-3" controlId="formGridPassword">
                   <Form.Label>Password</Form.Label>
                   <Form.Control
+                    className="auth-input"
                     type="password"
                     name="password"
                     value={form.password}
@@ -107,12 +112,10 @@ const Register = () => {
                   />
                 </Form.Group>
 
-                <Form.Group
-                  className="mb-3"
-                  controlId="formGridConfirmPassword"
-                >
+                <Form.Group className="mb-3" controlId="formGridConfirmPassword">
                   <Form.Label>Confirm Password</Form.Label>
                   <Form.Control
+                    className="auth-input"
                     type="password"
                     name="confirmPassword"
                     value={form.confirmPassword}
@@ -127,8 +130,8 @@ const Register = () => {
                 </Button>
               </Form>
             </Card.Body>
-            <Card.Footer>
-              <small className="text-muted">
+            <Card.Footer className="auth-card-footer">
+              <small className="auth-helper-text">
                 Already have an account?{" "}
                 <a
                   href="/login"

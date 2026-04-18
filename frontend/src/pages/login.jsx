@@ -50,23 +50,24 @@ async function handleSubmit(e) {
   };
 
   return (
-    <Container className="mt-4">
+    <Container className="mt-4 auth-shell">
       <Row className="justify-content-md-center">
         <Col xs={12} md={6}>
-          <Card>
-            <Card.Header as="h5">Sign In</Card.Header>
+          <Card className="auth-card shadow">
+            <Card.Header as="h5" className="auth-card-header">Sign In</Card.Header>
             <Card.Body>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicUsername">
                   <Form.Label>Username</Form.Label>
                   <Form.Control
+                    className="auth-input"
                     type="text"
                     placeholder="Enter Username"
                     value={form.username}
                     required
                     onChange={(e) => updateForm({ username: e.target.value })}
                   />
-                  <Form.Text className="text-muted">
+                  <Form.Text className="auth-helper-text">
                     Enter username or email to login
                   </Form.Text>
                 </Form.Group>
@@ -74,6 +75,7 @@ async function handleSubmit(e) {
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                   <Form.Label>Password</Form.Label>
                   <Form.Control
+                    className="auth-input"
                     type="password"
                     placeholder="Password"
                     value={form.password}
