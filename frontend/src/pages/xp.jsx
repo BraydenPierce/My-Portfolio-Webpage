@@ -2,7 +2,7 @@ import { Container, Button, Row, Col } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion"
 import resume from "../assets/resume.pdf";
 
-const ONC_Hours = 16.5;
+const ONC_Hours = 18.5;
 
 const Xp = () => {
   return (

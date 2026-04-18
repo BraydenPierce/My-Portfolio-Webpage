@@ -37,7 +37,6 @@ code {
 }
 
 /* #region Dark Mode General*/
-
 [data-bs-theme="dark"] {
   --bs-primary: #352208;
   --bs-primary-rgb: 53, 34, 8;
