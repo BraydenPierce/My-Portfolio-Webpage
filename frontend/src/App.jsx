@@ -14,6 +14,9 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import { useEffect, useState } from "react";
 
+import Onc from "./pages/phil-pages/onc";
+import Nmpd from "./pages/phil-pages/nmpd";
+
 // send cookies every request (need for sessions to work)
 axios.defaults.withCredentials = true;
 
@@ -72,6 +75,10 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/experience" element={<Xp />} />
         <Route path="/portfolio" element={<Portfolio />} />
+
+        <Route path="/nmpd" element={<Nmpd />} />
+        <Route path="/onc" element={<Onc/>} />
+
         <Route path="/hobbies" element={<Hobbies isAdmin={user?.accType === "Admin"} />} />
         <Route
           path="/login"

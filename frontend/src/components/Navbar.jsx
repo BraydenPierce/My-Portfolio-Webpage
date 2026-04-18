@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
-// import NavDropdown from "react-bootstrap/NavDropdown"; Might use for porfolio
+import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useNavigate } from "react-router-dom";
 
 function NavBar({ onToggleTheme, theme, isAuthenticated, onLogoutSuccess }) {
@@ -53,6 +53,18 @@ function NavBar({ onToggleTheme, theme, isAuthenticated, onLogoutSuccess }) {
             <Nav.Link as={Link} to="/hobbies">
               Hobbies
             </Nav.Link>
+            <NavDropdown
+              title="Philanthropy"
+              id="philanthropy-nav-dropdown"
+              className="phil-dropdown"
+            >
+              <NavDropdown.Item as={Link} to="/nmpd">
+                National Marrow Donor Program
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/onc">
+                Ogden Nature Center
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav>
           {/* The login and theme buttons - right aligned */}
           <Nav className="gap-2">
