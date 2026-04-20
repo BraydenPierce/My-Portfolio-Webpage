@@ -79,6 +79,7 @@ const Nmpd = () => {
             A longer reflection on what this experience meant to me, how it unfolded,
             and why it still shapes how I show up for others.
           </p>
+          <p className="mt-3 mb-0"> <a href="https://www.nmdp.org" target="_blank" rel="noopener noreferrer" className="portfolio-link"> Visit the NMDP Website </a> </p>
         </section>
 
         {storySections.map((section, index) => {
