@@ -86,30 +86,21 @@ const Xp = () => {
               </div>
             </Accordion.Header>
             <Accordion.Body>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-              pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum.
-            </Accordion.Body>
-          </Accordion.Item>
-          <Accordion.Item eventKey="1">
-            <Accordion.Header>
-              <div className="d-flex justify-content-between w-100 pe-2">
-                <span>Shift Leader - Quick & Clean Car Wash</span>
-                <span>June 2016 – November 2024</span>
-              </div>
-            </Accordion.Header>
-            <Accordion.Body>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-              pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum.
+              <ul>
+                <li>
+                  Assisting faculty and students with Microsoft Office tools, demonstrating technical support and
+                  troubleshooting expertise.
+                </li>
+                <li>
+                  Improving IT infrastructure through consistent hardware and software diagnostics.
+                </li>
+                <li>
+                  Documenting and enhancing support procedures to reduce recurring issues.
+                </li>
+                <li>
+                  Delivering efficient system resolutions while maintaining a service-oriented approach.
+                </li>
+              </ul>
             </Accordion.Body>
           </Accordion.Item>
       </Accordion>
