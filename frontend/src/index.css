@@ -744,15 +744,3 @@ color: #f3e4cd;
   color: #f3e4cd;
 }
 /* #endregion */
-
-/* #region Custom Themes */
-.nmpd-theme {
-  --fx-accent-a-rgb: var(--bs-secondary-rgb);
-  --fx-accent-b-rgb: var(--bs-tertiary-rgb);
-}
-
-.onc-theme {
-  --fx-accent-a-rgb: var(--bs-tertiary-rgb);
-  --fx-accent-b-rgb: var(--bs-secondary-rgb);
-}
-/* #endregion */
