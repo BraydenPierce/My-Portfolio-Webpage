@@ -114,43 +114,6 @@ const Xp = () => {
           </Accordion.Item>
       </Accordion>
       </Row>
-      <Row className="pt-2">
-        <h1 className="text-decoration-underline text-center">Philanthropy Work</h1>
-        <Accordion>
-          <Accordion.Item eventKey="0">
-            <Accordion.Header>
-              <div className="d-flex justify-content-between w-100 pe-2">
-                <span>NMDP (Formerly "Be The Match")</span>
-                {/*TODO: get exact dates and put picture in body*/}
-              </div>
-            </Accordion.Header>
-            <Accordion.Body>
-              <p>
-                This was a really cool experience where I was flown out to 
-                Washington for the purpose of donating stem cells!
-              </p>
-            </Accordion.Body>
-          </Accordion.Item>
-          <Accordion.Item eventKey="1">
-            <Accordion.Header>
-              <div className="d-flex justify-content-between w-100 pe-2">
-                <span>Regular Volunteer - Ogden Nature Center</span>
-                <span>Feburary 2026 – Present</span>
-              </div>
-            </Accordion.Header>
-            <Accordion.Body>
-              <p>
-                I love nature, so once a week I spend an evening volunteering at the
-                Ogden Nature Center. I have shoveled trails and common areas
-                when it snowed, help clear out beaver damns, and contributed
-                to the removal of invasie species!
-              </p>
-              <p>Total Hours = {ONC_Hours}</p>
-              {/*TODO: replace hours worked with an offical document from ONC*/}
-            </Accordion.Body>
-          </Accordion.Item>
-      </Accordion>
-      </Row>
       <Row className="align-items-center justify-content-center m-3 pb-2">
         <Col xs="auto" className="d-flex">
           <h4>Download my resume: </h4>
