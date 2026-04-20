@@ -240,6 +240,24 @@ transform: rotate(180deg) scale(1.08);
 .accordion .accordion-button::after {
   filter: brightness(0);
 }
+
+  /* Dark mode override for readable text */
+  [data-bs-theme="dark"] .accordion {
+    --bs-accordion-color: var(--bs-secondary);
+    --bs-accordion-border-color: var(--bs-secondary);
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.2rem rgba(var(--bs-secondary-rgb), 0.35);
+    --bs-accordion-active-bg: rgba(var(--bs-secondary-rgb), 0.18);
+    --bs-accordion-active-color: var(--bs-secondary);
+  }
+
+  [data-bs-theme="dark"] .accordion .accordion-body,
+  [data-bs-theme="dark"] .accordion .accordion-button {
+    color: var(--bs-secondary);
+  }
+
+  [data-bs-theme="dark"] .accordion .accordion-button::after {
+    filter: invert(1) brightness(1.2);
+  }
 /* #endregion */
 
 /* #region Github Cards */
