@@ -7,8 +7,17 @@
   --bs-secondary-rgb: 221, 161, 94;
   --bs-tertiary: #606C38;
   --bs-tertiary-rgb: 96, 108, 56;
+
+  --fx-progress: 0%;
 }
 
+[data-bs-theme="dark"] {
+  --bs-primary: #352208;
+  --bs-primary-rgb: 53, 34, 8;
+  --bs-secondary: #e1bb80;
+  --bs-secondary-rgb: 225, 187, 128;
+  --bs-body-color: var(--bs-secondary);
+}
 
 body {
   margin: 0;
@@ -36,13 +45,145 @@ code {
   background-color: var(--bs-tertiary);
 }
 
-/* #region Dark Mode General*/
-[data-bs-theme="dark"] {
-  --bs-primary: #352208;
-  --bs-primary-rgb: 53, 34, 8;
-  --bs-secondary: #e1bb80;
-  --bs-secondary-rgb: 225, 187, 128;
-  --bs-body-color: var(--bs-secondary);
+/* #region useScrollFx */
+/* Generic page shell */
+.fx-page {
+  --fx-accent-a-rgb: var(--bs-secondary-rgb);
+  --fx-accent-b-rgb: var(--bs-tertiary-rgb);
+  --fx-border: var(--bs-tertiary);
+  --fx-title: var(--bs-tertiary);
+
+  position: relative;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+.fx-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: var(--fx-progress);
+  z-index: 1200;
+  background: linear-gradient(90deg, var(--bs-tertiary), var(--bs-secondary));
+  box-shadow: 0 0 10px rgba(var(--bs-secondary-rgb), 0.65);
+}
+
+.fx-bg {
+  position: fixed;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.3;
+  animation: fxFloat 14s ease-in-out infinite;
+}
+
+.fx-bg.one {
+  width: 42vmax;
+  height: 42vmax;
+  top: -16vmax;
+  left: -10vmax;
+  background: rgba(var(--fx-accent-a-rgb), 0.28);
+}
+
+.fx-bg.two {
+  width: 38vmax;
+  height: 38vmax;
+  right: -8vmax;
+  bottom: -14vmax;
+  background: rgba(var(--fx-accent-b-rgb), 0.2);
+  animation-delay: -6s;
+}
+
+.fx-shell {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(var(--bs-secondary-rgb), 0.2),
+    rgba(var(--bs-secondary-rgb), 0.1)
+  );
+  border: 2px solid var(--fx-border);
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+.fx-title {
+  color: var(--fx-title);
+}
+
+.fx-reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.62s ease, transform 0.62s cubic-bezier(0.2, 0.75, 0.2, 1);
+}
+
+.fx-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reusable content card for text or photo sections */
+.fx-card {
+  background: rgba(var(--bs-primary-rgb), 0.86);
+  border: 2px solid rgba(var(--fx-accent-b-rgb), 0.8);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+}
+
+.fx-photo-frame {
+  border: 2px solid var(--fx-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(var(--fx-accent-a-rgb), 0.12);
+}
+
+.fx-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.fx-photo-frame:hover .fx-photo {
+  transform: scale(1.04);
+}
+
+@keyframes fxFloat {
+  0%,
+  100% { transform: translateY(0) translateX(0) scale(1); }
+  50% { transform: translateY(-2.3vmax) translateX(1.5vmax) scale(1.06); }
+}
+
+[data-bs-theme="dark"] .fx-shell {
+  background: linear-gradient(
+    180deg,
+    rgba(var(--bs-secondary-rgb), 0.14),
+    rgba(var(--bs-secondary-rgb), 0.06)
+  );
+  border-color: var(--bs-secondary);
+}
+
+[data-bs-theme="dark"] .fx-page {
+  --fx-border: var(--bs-secondary);
+  --fx-title: var(--bs-secondary);
+}
+
+[data-bs-theme="dark"] .fx-card {
+  border-color: rgba(var(--bs-secondary-rgb), 0.75);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-bg,
+  .fx-reveal,
+  .fx-photo {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }
 /* #endregion */
 
@@ -601,5 +742,17 @@ color: #f3e4cd;
 [data-bs-theme="dark"] .auth-helper-text,
 [data-bs-theme="dark"] .auth-card .card-footer {
   color: #f3e4cd;
+}
+/* #endregion */
+
+/* #region Custom Themes */
+.nmpd-theme {
+  --fx-accent-a-rgb: var(--bs-secondary-rgb);
+  --fx-accent-b-rgb: var(--bs-tertiary-rgb);
+}
+
+.onc-theme {
+  --fx-accent-a-rgb: var(--bs-tertiary-rgb);
+  --fx-accent-b-rgb: var(--bs-secondary-rgb);
 }
 /* #endregion */
