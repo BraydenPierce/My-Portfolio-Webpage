@@ -61,32 +61,32 @@ const App = () => {
   }, []);
 
   return (
-    <>
-      <NavBar
-        isAuthenticated={isAuthenticated}
-        onLogoutSuccess={() => {
-          setIsAuthenticated(false);
-          setUser(null);
-        }}
-        onToggleTheme={toggleTheme}
-        theme={theme}
-      />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/experience" element={<Xp />} />
-        <Route path="/portfolio" element={<Portfolio />} />
+    <div className="app-bg">
+      <div className="app-bg-circle app-bg-circle-one" aria-hidden="true" />
+      <div className="app-bg-circle app-bg-circle-two" aria-hidden="true" />
 
-        <Route path="/nmpd" element={<Nmpd />} />
-        <Route path="/onc" element={<Onc/>} />
-
-        <Route path="/hobbies" element={<Hobbies isAdmin={user?.accType === "Admin"} />} />
-        <Route
-          path="/login"
-          element={<Login onLoginSuccess={refreshSession} />}
+      <div className="app-content">
+        <NavBar
+          isAuthenticated={isAuthenticated}
+          onLogoutSuccess={() => {
+            setIsAuthenticated(false);
+            setUser(null);
+          }}
+          onToggleTheme={toggleTheme}
+          theme={theme}
         />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-    </>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/experience" element={<Xp />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/nmpd" element={<Nmpd />} />
+          <Route path="/onc" element={<Onc />} />
+          <Route path="/hobbies" element={<Hobbies isAdmin={user?.accType === "Admin"} />} />
+          <Route path="/login" element={<Login onLoginSuccess={refreshSession} />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </div>
+    </div>
   );
 };
 
