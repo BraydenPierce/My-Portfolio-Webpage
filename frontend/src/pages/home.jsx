@@ -21,7 +21,7 @@ const Home = () => {
               out and learn new things!
             </p>
             <p>
-              Look around my website to see some of my projects, hobbies, and ways of
+              Look around my website to see some of my projects, experiences, and ways of
               contacting me!
             </p>
             <h2 className="d-flex justify-content-center">Enjoy!</h2>
